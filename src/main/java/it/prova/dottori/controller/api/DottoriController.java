@@ -63,7 +63,7 @@ public class DottoriController {
 		Dottore result = dottoreService.findByCodFiscalePazienteAttualmenteInVisita(codFiscale);
 
 		if (result == null)
-			throw new RuntimeException("nessun dottore sul paziente");
+			throw new RuntimeException("Nessun dottore associato al paziente");
 
 		return DottoreDTO.buildDottoreDTOFromModel(result);
 	}
@@ -75,10 +75,10 @@ public class DottoriController {
 		Dottore result = dottoreService.verificaDisponibilita(codFiscale);
 
 		if (result == null)
-			throw new RuntimeException("dottore non trovato");
+			throw new RuntimeException("Dottore non trovato");
 
 		if (!result.isInServizio() || result.isInVisita())
-			throw new RuntimeException("dottore non disponibile");
+			throw new RuntimeException("Dottore non disponibile");
 
 		return DottoreDTO.buildDottoreDTOFromModel(result);
 	}
